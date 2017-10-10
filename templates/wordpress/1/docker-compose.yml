@@ -28,14 +28,11 @@ services:
 volumes:
   mariadb_data:
     driver_opts:
-      repl: '3'
+      repl: '1'
       size: '2'
     driver: ${volume_driver}
-    external: true
   wordpress_data:
     driver_opts:
-      repl: '3'
+      repl: '1'
       size: '2'
-      shared: 'true'
     driver: ${volume_driver}
-    external: true
