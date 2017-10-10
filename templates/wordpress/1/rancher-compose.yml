@@ -59,7 +59,7 @@ catalog:
         - rancher-nfs
         - rancher-efs
         - rancher-ebs
-	- pxd
+        - pxd
 services:
   wordpress-lb:
     scale: 1
