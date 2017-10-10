@@ -27,6 +27,12 @@ services:
       - ${public_port}:${public_port}
 volumes:
   mariadb_data:
+    driver_opts:
+      repl: '3'
+      size: '2'
     driver: ${volume_driver}
   wordpress_data:
+    driver_opts:
+      repl: '3'
+      size: '2'
     driver: ${volume_driver}
