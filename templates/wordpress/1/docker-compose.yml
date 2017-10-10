@@ -36,5 +36,6 @@ volumes:
     driver_opts:
       repl: '3'
       size: '2'
+      shared: 'true'
     driver: ${volume_driver}
     external: true
