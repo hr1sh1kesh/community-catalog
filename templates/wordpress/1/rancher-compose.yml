@@ -76,7 +76,7 @@ services:
       port: 42
       unhealthy_threshold: 3
   wordpress:
-    scale: 3
+    scale: 1
     retain_ip: true
     health_check:
       port: 80
