@@ -31,11 +31,9 @@ volumes:
       repl: '3'
       size: '2'
     driver: ${volume_driver}
-    external: true
   wdata:
     driver_opts:
       repl: '3'
       size: '2'
       shared: 'true'
     driver: ${volume_driver}
-    external: true
