@@ -1,6 +1,6 @@
-catalog:
+.catalog:
   name: "Portworx"
-  version: "1.2.0"
+  version: "1.1.6-2017-02-08-GA"
   description: "Portworx Docker Volume Plugin"
   questions:
 
