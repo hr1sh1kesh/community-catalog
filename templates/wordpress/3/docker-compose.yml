@@ -12,7 +12,7 @@ services:
   wordpress:
       image: 'bitnami/wordpress:4'
       volumes:
-        - 'wordpress_data:/bitnami'
+        - 'wp_data:/bitnami'
       depends_on:
         - mariadb
       environment:
@@ -30,10 +30,12 @@ volumes:
     driver_opts:
       repl: '3'
       size: '2'
+    external:true
     driver: ${volume_driver}
-  wordpress_data:
+  wp_data:
     driver_opts:
       repl: '3'
       size: '2'
       secure: 'true'
+    external:true
     driver: ${volume_driver}
