@@ -30,12 +30,12 @@ volumes:
     driver_opts:
       repl: '3'
       size: '2'
-    external:true
+    external: true
     driver: ${volume_driver}
   wp_data:
     driver_opts:
       repl: '3'
       size: '2'
       secure: 'true'
-    external:true
+    external: true
     driver: ${volume_driver}
