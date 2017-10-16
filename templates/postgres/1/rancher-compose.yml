@@ -63,6 +63,7 @@ catalog:
         - rancher-nfs
         - rancher-efs
         - rancher-ebs
+        - pxd
     - variable: host_label
       label: "Host with Label to put postgres on"
       description: |

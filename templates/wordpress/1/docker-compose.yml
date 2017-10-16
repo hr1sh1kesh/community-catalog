@@ -37,4 +37,5 @@ volumes:
       repl: '1'
       size: '2'
     external: true
+    per_container: true
     driver: ${volume_driver}
