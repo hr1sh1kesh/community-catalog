@@ -31,12 +31,12 @@ volumes:
       repl: '1'
       size: '2'
       aggregation_leve: '2'
-    external:true
+    external: true
     driver: ${volume_driver}
   w_data:
     driver_opts:
       repl: '1'
       size: '2'
       aggregation_leve: '2'
-      external:true
+      external: true
     driver: ${volume_driver}
