@@ -31,7 +31,6 @@ volumes:
       repl: '1'
       size: '2'
     driver: ${volume_driver}
-    external: true
   wp_data:
     driver_opts:
       repl: '1'
