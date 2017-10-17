@@ -30,6 +30,7 @@ volumes:
     driver_opts:
       repl: '1'
       size: '2'
+    per_container: true
     driver: ${volume_driver}
   wp_data:
     driver_opts:
