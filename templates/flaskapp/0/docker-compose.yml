@@ -3,8 +3,6 @@ services:
   postgresdb:
     image: "harshals/mypostgres:1.4"
     container_name: postgresdb
-    labels:
-      io.rancher.sidekicks: postgresdata
     volumes:
       - 'mariadb_data:/var/lib/postgresql/data'
     expose:
