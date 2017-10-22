@@ -10,8 +10,8 @@ services:
   postgresdb:
     image: "harshals/mypostgres:1.4"
     container_name: postgresdb
-    volumes_from:
-      - postgresdata
+    volumes:
+      - /mariadb_data:/var/lib/postgresql/data
     expose:
       - 5432
     environment:
