@@ -31,10 +31,10 @@ services:
     ports:
       - "5432:5432"
 
-  volumes:
-    mariadb_data:
-      driver_opts:
-        repl: '1'
-        size: '2'
-      driver: 'pxd'
+volumes:
+  mariadb_data:
+    driver_opts:
+      repl: '1'
+      size: '2'
+    driver: 'pxd'
 
