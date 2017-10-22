@@ -1,6 +1,5 @@
----
 name: Demo App
-description: >
+description: |
     A Demo App which does almost nothing of any practical value.
 version: 0.0.1-rancher1
 category: Toy Apps
