@@ -1,38 +1,40 @@
-web:
-  restart: always
-  image: "harshals/web:1.0"
-  expose:
-    - "8000"
-  links:
-    - postgres:postgres
-  volumes:
-    - /usr/src/app/static
-  env_file: ./config/.env
-  command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
+version: '2'
+services:
+  web:
+    restart: always
+    image: "harshals/web:1.0"
+    expose:
+      - "8000"
+    links:
+      - postgres:postgres
+    volumes:
+      - /usr/src/app/static
+    env_file: ./config/.env
+    command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
 
-nginx:
-  restart: always
-  image: nginx
-  ports:
-    - "80:80"
-  volumes:
-    - /www/static
-  volumes_from:
-    - web
-  links:
-    - web:web
-postgres:
-  restart: always
-  image: postgres:latest
-  volumes:
-          - 'mariadb_data:/var/lib/postgresql'
-  ports:
-    - "5432:5432"
+  nginx:
+    restart: always
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - /www/static
+    volumes_from:
+      - web
+    links:
+      - web:web
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - 'mariadb_data:/var/lib/postgresql'
+    ports:
+      - "5432:5432"
 
-volumes:
-  mariadb_data:
-    driver_opts:
-      repl: '1'
-      size: '2'
-    driver: 'pxd'
+  volumes:
+    mariadb_data:
+      driver_opts:
+        repl: '1'
+        size: '2'
+      driver: 'pxd'
 
