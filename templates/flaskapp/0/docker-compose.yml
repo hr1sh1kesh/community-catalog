@@ -21,18 +21,18 @@ nginx:
     - web
   links:
     - web:web
-
-data:
-  image: postgres:latest
-  volumes:
-    - /var/lib/postgresql
-  command: /bin/true
-
 postgres:
   restart: always
   image: postgres:latest
-  volumes_from:
-    - data
+  volumes:
+          - 'mariadb_data:/var/lib/postgresql'
   ports:
     - "5432:5432"
+
+volumes:
+  mariadb_data:
+    driver_opts:
+      repl: '1'
+      size: '2'
+    driver: 'pxd'
 
