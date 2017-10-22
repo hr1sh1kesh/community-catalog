@@ -54,8 +54,7 @@ services:
       - "80:80"
     volumes:
       - /ngnix:/www/static
-    volumes_from:
-      - web
+      - /ngnix:/usr/src/app/static
     links:
       - "web:web"
 volumes:
