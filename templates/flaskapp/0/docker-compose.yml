@@ -4,7 +4,7 @@ services:
     image: "postgres"
     container_name: postgresdata
     volumes:
-      - /mnt/data:/var/lib/postgresql/data
+      - /mariadb_data:/var/lib/postgresql/data
     command: /bin/true
     
   postgresdb:
@@ -42,7 +42,7 @@ services:
     depends_on:
       - pgwriter
     volumes:
-      - /vagrant/web/static:/usr/src/app/static
+            - /ngnix:/usr/src/app/static
     env_file: ./config/.env
     command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
 
@@ -53,8 +53,27 @@ services:
     ports:
       - "80:80"
     volumes:
-      - /vagrant/web/static:/www/static
+      - /ngnix:/www/static
     volumes_from:
       - web
     links:
       - web:web
+volumes:
+  mariadb_data:
+    driver_opts:
+      repl: '1'
+      size: '2'
+    external: true
+    driver: pxd
+  wp_data:
+    driver_opts:
+      repl: '1'
+      size: '2'
+    driver: pxd
+  ngnix:
+    driver_opts:
+      repl: '1'
+      size: '2'
+    external: true          
+    driver: pxd
+
