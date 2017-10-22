@@ -1,4 +1,4 @@
 .catalog:
-  name: "Portworx"
+  name: "flaskapp"
   version: "1.2"
 description: "Portworx Docker Volume Plugin"
