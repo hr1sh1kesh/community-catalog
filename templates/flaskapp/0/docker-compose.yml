@@ -13,7 +13,7 @@ services:
     image: "harshals/mypostgres:1.4"
     container_name: postgresdb
     labels:
-      io.rancher.sidekicks: postgres-data
+      io.rancher.sidekicks: postgresdata
     volumes_from:
       - postgresdata
     expose:
