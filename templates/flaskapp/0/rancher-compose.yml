@@ -1,4 +1,6 @@
 .catalog:
-  name: "flaskapp"
-  version: "1.2"
-description: "Portworx Docker Volume Plugin"
+    name: "Concrete5"
+    version: "v0.1"
+    description: "Concrete5 C"
+    uuid: Concrete5-0
+    minimum_rancher_version: v0.51.0

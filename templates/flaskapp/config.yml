@@ -1,8 +1,7 @@
-name: flaskapp
+name: Concrete5
 description: |
-    A Demo App which does almost nothing of any practical value.
-version: 0.0.1-rancher1
-category: Toy Apps
-maintainer: test
-license: Apache2
-projectURL: test
+                    Flask app
+version: v0.2
+category: test
+maintainer: test user
+projectURL: http://www.infracloud.io
