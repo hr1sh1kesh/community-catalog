@@ -1,77 +1,39 @@
-version: '2'
-services:
-  postgresdata:
-    image: "postgres"
-    labels:
-      io.rancher.container.start_once: true            
-    container_name: postgresdata
-    volumes:
-      - /mariadb_data:/var/lib/postgresql/data
-    command: /bin/true
-    
-  postgresdb:
-    image: "harshals/mypostgres:1.4"
-    container_name: postgresdb
-    labels:
-      io.rancher.sidekicks: postgresdata
-    volumes_from:
-      - postgresdata
-    expose:
-      - 5432
-    environment:
-      - POSTGRES_PASSWORD=mypassword
-      - POSTGRES_USER=mypguser
-      - POSTGRES_DB=flktstdb
-  pgwriter:
-    image: "harshals/postgreswriter:1.3"
-    container_name: "pgwriter"
-    links:
-      - "postgresdb:postgres"
-    depends_on:
-      - postgresdb
-    environment:
-      - POSTGRES_PASSWORD=mypassword
-      - POSTGRES_USER=mypguser
-      - POSTGRES_DB=flktstdb
-      - POSTGRES_TABLE=flockertab
-      - POSTGRES_HOST=postgres
-  web:
-    restart: always
-    container_name: "web"
-    image: "harshals/web:1.0"
-    expose:
-      - "8000"
-    links:
-      - "postgresdb:postgres"
-    depends_on:
-      - pgwriter
-    volumes:
-      - /ngnix:/usr/src/app/static
-    env_file: ./config/.env
-    command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
+web:
+  restart: always
+  build: ./web
+  expose:
+    - "8000"
+  links:
+    - postgres:postgres
+  volumes:
+    - /usr/src/app/static
+  env_file: .env
+  command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
 
-  nginx:
-    container_name: "ngnix"
-    restart: always
-    image: "harshals/nginx:1.0"
-    ports:
-      - "80:80"
-    volumes:
-      - /ngnix:/www/static
-      - /ngnix:/usr/src/app/static
-    links:
-      - web:web
-volumes:
-  mariadb_data:
-    driver_opts:
-      repl: '1'
-      size: '2'
-    external: true
-    driver: 'pxd'
-  ngnix:
-    driver_opts:
-      repl: '1'
-      size: '2'
-    external: true          
-    driver: 'pxd'
+nginx:
+  restart: always
+  build: ./nginx/
+  ports:
+    - "80:80"
+  volumes:
+    - /www/static
+  volumes_from:
+    - web
+  links:
+    - web:web
+
+data:
+  restart: no
+  image: postgres:latest
+  volumes:
+    - /var/lib/postgresql
+  command: true
+
+postgres:
+  restart: always
+  image: postgres:latest
+  volumes_from:
+    - data
+  ports:
+    - "5432:5432"
 
