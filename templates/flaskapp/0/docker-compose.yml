@@ -58,8 +58,10 @@ services:
       - "80:80"
     volumes:
       - /ngnix:/www/static
+    labels:
+      io.rancher.sidekicks: web
     volumes_from:
-      - web
+      -  web
     links:
       - web:web
 volumes:
