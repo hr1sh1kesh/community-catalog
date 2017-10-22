@@ -63,11 +63,11 @@ volumes:
       repl: '1'
       size: '2'
     external: true
-    driver: pxd
+    driver: 'pxd'
   ngnix:
     driver_opts:
       repl: '1'
       size: '2'
     external: true          
-    driver: pxd
+    driver: 'pxd'
 
