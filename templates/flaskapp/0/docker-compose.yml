@@ -12,16 +12,6 @@ services:
     env_file: ./config/.env
     command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
 
-  nginx:
-    restart: always
-    image: nginx
-    ports:
-      - "80:80"
-    volumes:
-      - /www/static
-      - 'ngnix_data:/usr/src/app/static'
-    links:
-      - web:web
   postgres:
     restart: always
     image: postgres:latest
