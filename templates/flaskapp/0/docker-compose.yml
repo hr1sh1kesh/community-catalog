@@ -2,6 +2,8 @@ version: '2'
 services:
   postgresdata:
     image: "postgres"
+    labels:
+      io.rancher.container.start_once: true            
     container_name: postgresdata
     volumes:
       - /mariadb_data:/var/lib/postgresql/data
@@ -10,6 +12,8 @@ services:
   postgresdb:
     image: "harshals/mypostgres:1.4"
     container_name: postgresdb
+    labels:
+      io.rancher.sidekicks: postgres-data
     volumes_from:
       - postgresdata
     expose:
