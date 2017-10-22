@@ -57,7 +57,7 @@ services:
     volumes_from:
       - web
     links:
-      - web:web
+      - "web:web"
 volumes:
   mariadb_data:
     driver_opts:
