@@ -47,7 +47,6 @@ volumes:
       repl: '1'
       size: '2'
     per_container: true
-    external: true
     driver: 'pxd'
   ngnix:
     driver_opts:
