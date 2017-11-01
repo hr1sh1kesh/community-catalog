@@ -16,6 +16,8 @@ services:
     container_name: "pgwriter"
     links:
       - "postgresdb:postgres"
+    volumes:
+      - 'mariadb_data:/var/lib/postgresql/data'
     depends_on:
       - postgresdb
     environment:
@@ -40,10 +42,6 @@ services:
       - /mariadb_data:/usr/src/app/static
     env_file: ./config/.env
     command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
-  cassandra:
-    image: bitnami/cassandra:latest
-    volumes:
-      - /mariadb_data:/bitnami
 volumes:
   mariadb_data:
     driver_opts:
