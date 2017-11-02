@@ -26,7 +26,7 @@ services:
       - POSTGRES_DB=flktstdb
       - POSTGRES_TABLE=flockertab
       - POSTGRES_HOST=postgres
-  pgwriter:
+  pgreader:
     image: "sghintala/postgresread:latest"
     container_name: "pgwriter"
     links:
