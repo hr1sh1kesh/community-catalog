@@ -16,8 +16,6 @@ services:
     container_name: "pgwriter"
     links:
       - "postgresdb:postgres"
-    volumes:
-      - 'mariadb_data:/var/lib/postgresql/data'
     depends_on:
       - postgresdb
     environment:
@@ -31,8 +29,6 @@ services:
     container_name: "pgreader"
     links:
       - "postgresdb:postgres"
-    volumes:
-      - "mariadb_data:/var/log"
     depends_on:
       - postgresdb
     environment:
