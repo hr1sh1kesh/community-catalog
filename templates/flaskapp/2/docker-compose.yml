@@ -26,6 +26,21 @@ services:
       - POSTGRES_DB=flktstdb
       - POSTGRES_TABLE=flockertab
       - POSTGRES_HOST=postgres
+  pgwriter:
+    image: "sghintala/postgresread:latest"
+    container_name: "pgwriter"
+    links:
+      - "postgresdb:postgres"
+    volumes:
+      - 'mariadb_data:/var/lib/postgresql/data'
+    depends_on:
+      - postgresdb
+    environment:
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_USER=mypguser
+      - POSTGRES_DB=flktstdb
+      - POSTGRES_TABLE=flockertab
+      - POSTGRES_HOST=postgres
   web:
     restart: always
     container_name: "web"
