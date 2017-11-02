@@ -4,7 +4,7 @@ services:
     image: "harshals/mypostgres:1.4"
     container_name: postgresdb
     volumes:
-      - 'snap1:/var/lib/postgresql/data'
+      - 'mariadb_data:/var/lib/postgresql/data'
     expose:
       - 5432
     environment:
@@ -48,4 +48,10 @@ volumes:
       size: '2'
     external: true          
     driver: 'pxd'
-
+  mariadb_data:
+    driver_opts:
+      repl: '1'
+      size: '2'
+      shared: 'true'
+    external: true
+    driver: 'pxd'
