@@ -32,7 +32,7 @@ services:
     links:
       - "postgresdb:postgres"
     volumes:
-      - "mariadb_data:/var/lib/postgresql/data"
+      - "mariadb_data:/var/log"
     depends_on:
       - postgresdb
     environment:
