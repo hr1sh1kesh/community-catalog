@@ -28,9 +28,11 @@ services:
       - POSTGRES_HOST=postgres
   pgreader:
     image: "sghintala/postgresread:latest"
-    container_name: "pgwriter"
+    container_name: "pgreader"
     links:
       - "postgresdb:postgres"
+    volumes:
+      - "mariadb_data:/var/lib/postgresql/data"
     depends_on:
       - postgresdb
     environment:
