@@ -27,6 +27,8 @@ services:
   pgreader:
     image: "sghintala/postgresread:latest"
     container_name: "pgreader"
+    volumes:
+      - 'mariadb_data:/var/log'
     links:
       - "postgresdb:postgres"
     depends_on:
