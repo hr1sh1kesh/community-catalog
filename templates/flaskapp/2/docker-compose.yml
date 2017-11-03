@@ -28,7 +28,7 @@ services:
     image: "sghintala/postgresread:latest"
     container_name: "pgreader"
     volumes:
-      - 'mariadb_data:/var/log'
+      - '/mariadb_data:/var/log'
     links:
       - "postgresdb:postgres"
     depends_on:
@@ -52,7 +52,7 @@ services:
     depends_on:
       - pgwriter
     volumes:
-      - /mariadb_data:/usr/src/app/static
+      - mariadb_data:/usr/src/app/static
     env_file: ./config/.env
     command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
 volumes:
