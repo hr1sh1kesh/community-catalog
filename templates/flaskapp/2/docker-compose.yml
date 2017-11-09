@@ -4,7 +4,7 @@ services:
     image: "harshals/mypostgres:1.4"
     container_name: postgresdb
     volumes:
-      - 'mariadb_data:/var/lib/postgresql/data'
+      - 'mariadb_data_flask_aggregated:/var/lib/postgresql/data'
     expose:
       - 5432
     environment:
