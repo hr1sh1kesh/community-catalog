@@ -3,7 +3,7 @@ services:
   mariadb:
       image: 'bitnami/mariadb:10.1'
       volumes:
-        - 'mariadb_data:/bitnami'
+        - 'mariadb_data_per_container:/bitnami'
       environment:
         - MARIADB_ROOT_PASSWORD=${mariadb_root_password}
         - MARIADB_USER=${mariadb_user}
@@ -12,7 +12,7 @@ services:
   wordpress:
       image: 'bitnami/wordpress:4'
       volumes:
-        - 'wp_data:/bitnami'
+        - 'wordpress_data_per_container:/bitnami'
       depends_on:
         - mariadb
       environment:
@@ -26,13 +26,13 @@ services:
     ports:
       - ${public_port}:${public_port}
 volumes:
-  mariadb_data:
+  mariadb_data_per_container:
     driver_opts:
       repl: '1'
       size: '2'
     per_container: true
     driver: ${volume_driver}
-  wp_data:
+  wordpress_data_per_container:
     driver_opts:
       repl: '1'
       size: '2'

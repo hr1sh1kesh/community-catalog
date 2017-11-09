@@ -1,6 +1,6 @@
 .catalog:
     name: "Concrete5"
-    version: "v0.1"
+    version: "v0.1-standard"
     description: "Concrete5 C"
     uuid: Concrete5-0
     minimum_rancher_version: v0.51.0

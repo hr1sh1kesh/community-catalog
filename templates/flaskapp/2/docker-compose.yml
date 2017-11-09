@@ -56,11 +56,11 @@ services:
     env_file: ./config/.env
     command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
 volumes:
-  mariadb_data:
+  mariadb_data_flask_aggregated:
     driver_opts:
       repl: '1'
       size: '2'
-      shared: 'true'
+      aggregation_level: '2'
     external: true
     driver: 'pxd'
 

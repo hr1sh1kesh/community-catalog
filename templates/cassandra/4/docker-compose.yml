@@ -8,7 +8,7 @@ services:
       - '9042:9042'
       - '9160:9160'
     volumes:
-      - 'cassandra_data_aggregated:/bitnami'
+      - 'cassandra_data_secured:/bitnami'
   cassandrawriter:
     image: "sghintala/cassandra-writer:latest"
     container_name: "cassandrawriter"
@@ -21,12 +21,12 @@ services:
       - CASSANDRA_USER=cassandra
       - CASSANDRA_HOST=cassandrahost
 volumes:
-  cassandra_data_aggregated:
+  cassandra_data_secured:
     driver_opts:
       repl: '3'
       size: '2'
-      aggregation_level: '2'
-    external: 'true'
+      secure: 'true'
+    external: true
     driver: pxd
 
 

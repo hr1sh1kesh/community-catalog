@@ -4,7 +4,7 @@ services:
     image: "harshals/mypostgres:1.4"
     container_name: postgresdb
     volumes:
-      - 'mariadb_data:/var/lib/postgresql/data'
+      - 'mariadb_data_flask_standard:/var/lib/postgresql/data'
     expose:
       - 5432
     environment:
@@ -37,18 +37,18 @@ services:
     depends_on:
       - pgwriter
     volumes:
-      - /ngnix:/usr/src/app/static
+      - ngnix_standard:/usr/src/app/static
     env_file: ./config/.env
     command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
 
 volumes:
-  mariadb_data:
+  mariadb_data_flask_standard:
     driver_opts:
       repl: '1'
       size: '2'
     external: true
     driver: 'pxd'
-  ngnix:
+  ngnix_standard:
     driver_opts:
       repl: '1'
       size: '2'

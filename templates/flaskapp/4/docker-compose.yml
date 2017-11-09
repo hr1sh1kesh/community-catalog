@@ -4,7 +4,7 @@ services:
     image: "harshals/mypostgres:1.4"
     container_name: postgresdb
     volumes:
-      - 'mariadb_data_flask_shared:/var/lib/postgresql/data'
+      - 'mariadb_data_flask_per_cotnainer_secured:/var/lib/postgresql/data'
     expose:
       - 5432
     environment:
@@ -16,6 +16,21 @@ services:
     container_name: "pgwriter"
     links:
       - "postgresdb:postgres"
+    depends_on:
+      - postgresdb
+    environment:
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_USER=mypguser
+      - POSTGRES_DB=flktstdb
+      - POSTGRES_TABLE=flockertab
+      - POSTGRES_HOST=postgres
+  pgreader:
+    image: "sghintala/postgresread:latest"
+    container_name: "pgreader"
+    links:
+      - "postgresdb:postgres"
+    volumes:
+      - "mariadb_data:/var/log"
     depends_on:
       - postgresdb
     environment:
@@ -37,22 +52,14 @@ services:
     depends_on:
       - pgwriter
     volumes:
-      - ngnix_shared:/usr/src/app/static
+      - /ngnix:/usr/src/app/static
     env_file: ./config/.env
     command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app
 
 volumes:
-  ngnix_shared:
+  mariadb_data_flask_per_cotnainer_secured:
     driver_opts:
       repl: '1'
       size: '2'
-      shared: 'true'
-    external: true          
-    driver: 'pxd'
-  mariadb_data_flask_shared:
-    driver_opts:
-      repl: '1'
-      size: '2'
-      shared: 'true'
-    external: true
+      secured: 'true'
     driver: 'pxd'
