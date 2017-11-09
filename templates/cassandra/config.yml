@@ -1,0 +1,7 @@
+name: Cassandra
+description: |
+                    cassandra app
+version: v0.2
+category: test
+maintainer: test user
+projectURL: http://www.infracloud.io
