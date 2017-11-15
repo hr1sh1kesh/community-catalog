@@ -1,0 +1,6 @@
+.catalog:
+    name: "Concrete5"
+    version: "v0.1-sticky-test"
+    description: "Concrete5 C"
+    uuid: Concrete5-0
+    minimum_rancher_version: v0.51.0
